@@ -1,0 +1,27 @@
+create table if not exists course
+(
+    course_id   int auto_increment
+        primary key,
+    course_name varchar(45) not null,
+    dept        varchar(45) not null
+);
+
+create table if not exists student
+(
+    id         int auto_increment
+        primary key,
+    first_name varchar(45) null,
+    last_name  varchar(45) null,
+    email      varchar(45) null
+);
+
+create table if not exists student_course
+(
+    student_id int not null,
+    course_id  int not null,
+    primary key (student_id, course_id),
+    constraint student_course_course_null_fk
+        foreign key (course_id) references course (course_id),
+    constraint student_course_student_null_fk
+        foreign key (student_id) references student (id)
+);
